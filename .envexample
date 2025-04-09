@@ -1,0 +1,16 @@
+# Puerto donde corre el servidor
+PORT=
+# Conexión a la base de datos MongoDB
+DB_URI=
+# Conexión a la base de datos MongoDB para testing
+DB_URI_TEST=
+# URL pública de la app
+PUBLIC_URL=
+# Secret para firmar tokens JWT
+JWT_SECRET=
+# Email para enviar correos (ej: validación, recuperación)
+EMAIL=
+# Tokens de acceso a API de envío de correos (ej: Gmail API)
+REFRESH_TOKEN=
+CLIENT_SECRET=
+CLIENT_ID=

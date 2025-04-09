@@ -1,0 +1,4 @@
+#Ignoramos el archivo .env porque contiene información sensible y privada
+.env
+#Ignoramos el archivo node_modules ya que tiene todas las dependencias y puede pesar muchos MB
+/node_modules

@@ -1,0 +1,141 @@
+### Registro de nuevo usuario
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "oscar4@gmail.com",
+    "password": "123456789",
+    "name": "Oscar",
+    "lastname": "Corrochano",
+    "nif": "12345679X",
+    "isAutonomous": false
+}
+
+###Iniciar sesión con usuario registrado
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "oscar4@gmail.com",
+    "password": "nuevacontraseña123"
+}
+
+###Obtener la lista de usuarios
+GET http://localhost:3000/api/users
+
+###Obtener usuario por ID
+GET http://localhost:3000/api/users/67dd4b23f4d1147409c73893
+
+###Actualizar datos de un usuario
+PUT http://localhost:3000/api/users/67dd564b6e2aea41b1e100d4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGQ0OGM1YWMzNWU2MmQwMTViZWQ0ZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQyNTU1NDAxLCJleHAiOjE3NDI1NjI2MDF9.UW6MTLaYlG6UE0Z8JWrAM2XMsECv3WspO0xpfGdyoMw
+
+{
+    "name": "Oscar",
+    "lastname": "Corrochano",
+    "nif": "12345678X",
+    "isAutonomous": false
+}
+
+###Eliminar usuario por ID
+DELETE http://localhost:3000/api/users/67dd564b6e2aea41b1e100d4
+
+
+###Validar el email con código
+POST http://localhost:3000/api/auth/validate
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTY0NmRmMjNlOWM5N2QxOTg0ZmI5NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzMTQ0NzExLCJleHAiOjE3NDMxNTE5MTF9.BwNt_wkAHPxdPSktTq6raLwVceBOCN86ODNaE1koQyI
+
+{
+    "code": "910777"
+}
+###Enviar email
+POST http://localhost:3000/api/email/send
+Content-Type: application/json
+
+{
+    "subject": "Prueba de correo",
+    "text": "Este correo solo llegará a gente con calvicie severa.",
+    "to": "oscarcorrochanolopez@gmail.com",
+    "from": "oscarcorrochanolopez@gmail.com"
+}
+
+###Registrar un usuario autónomo
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{   
+    "email": "prueba1@gmail.com",
+    "password": "12345678",
+    "isAutonomous": true,
+    "name": "Prueba",
+    "lastname": "Primero",
+    "nif": "12345679X"
+}
+
+###Actualización datos compañia
+PATCH http://localhost:3000/api/users/update-company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGQ1NjRiNmUyYWVhNDFiMWUxMDBkNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQyNTU4Nzk1LCJleHAiOjE3NDI1NjU5OTV9.B3LR-VBT2O3XF71DLNuB_rI_fOF4fGkIdjjagB7FkAo
+
+{
+    "name": "Empresa Demo",
+    "cif": "B12345678",
+    "address": "Calle Falsa 123"
+}
+
+### Punto 4, logo 
+### Actualizar logo
+PATCH http://localhost:3000/api/users/update-logo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTY0NmRmMjNlOWM5N2QxOTg0ZmI5NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzMTQ1MDkzLCJleHAiOjE3NDMxNTIyOTN9.RP3Q464xl7J_9KmmflF0en_uSDrkylZPcDXb-Iu096Q
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name="logo"; filename="logo1.png"
+Content-Type: image/png
+
+< ./logo1.png
+--boundary123--
+
+
+###Obtener usuario a partir del token
+GET http://localhost:3000/api/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3YTA1YTUxMGJlYTBhZmI5OWZlZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNDIwMjcxLCJleHAiOjE3NDM0Mjc0NzF9.RtdxXcrw-2kjKhpGUYBRhZBPS61zEfq1FnhPy5D2IJ0
+
+### Eliminar usuario (soft delete por defecto)
+DELETE http://localhost:3000/api/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3YTA1YTUxMGJlYTBhZmI5OWZlZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNDIwMjcxLCJleHAiOjE3NDM0Mjc0NzF9.RtdxXcrw-2kjKhpGUYBRhZBPS61zEfq1FnhPy5D2IJ0
+
+### Eliminar usuario (hard delete)
+DELETE http://localhost:3000/api/users/profile?soft=false
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3ZDZhODg3OTE4NTNhYzNjOTY0ZCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNDIwNzc4LCJleHAiOjE3NDM0Mjc5Nzh9.8Ep4C0C6aIQn2Ql9EHLD3obHeCiaqOpFzDvHCy05t1w
+
+###Recuperar contraseña
+POST http://localhost:3000/api/auth/recover-password
+Content-Type: application/json
+
+{
+    "email": "oscar4@gmail.com"
+}
+
+### Resetear contraseña
+POST http://localhost:3000/api/auth/reset-password
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3ZWNjNzBmNWE0NmQyYjM5YmUxMSIsImlhdCI6MTc0MzQyMTE0NCwiZXhwIjoxNzQzNDIxNzQ0fQ.dqcz9XUyLwsFedV-M3wmL1g8v6CJzsxy3tiEH6j16Q8",
+    "newPassword": "nuevacontraseña123"
+}
+
+### Invitar a un usuario guest
+POST http://localhost:3000/api/users/invite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3ZWNjNzBmNWE0NmQyYjM5YmUxMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNDIxNzY0LCJleHAiOjE3NDM0Mjg5NjR9.HCWadjLW-YdbvpZ8xOkHA4fm8CY2EQcwqFzPSTK2FyY
+
+{
+    "email": "invitado@gmail.com"
+}
+
+
+
