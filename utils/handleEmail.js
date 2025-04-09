@@ -10,7 +10,7 @@ const createTransporter = async () => {
         process.env.REDIRECT_URI
     );
     oauth2Client.setCredentials({ //token de actualización
-        refresh_token: process.env.REFRESH_TOKEN
+        refresh_token: process.env.REFRESH_TOKEN    
     });
     const accessToken = await new Promise((resolve, reject) => {
         oauth2Client.getAccessToken((err, token) => {

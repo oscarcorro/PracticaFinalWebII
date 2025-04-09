@@ -111,6 +111,11 @@ const deleteProfile = async(req, res) => {
     }
 }
 
+//función para generar un código de verificación de 6 dígitos
+const generateVerificationCode = () => {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
 //invitar a un compañero
 const inviteUser = async(req, res) => {
     try{
@@ -128,16 +133,28 @@ const inviteUser = async(req, res) => {
         const tempPassword = Math.random().toString(36).slice(-8) //contraseña temporal
         const hashedPassword = await encrypt(tempPassword)
 
+        const verificationCode = generateVerificationCode()
+
         const newUser = await User.create({
             email,
             password: hashedPassword,
             role: "guest", //rol de invitad
-            company: inviter.company //misma compañía que el que invita
+            company: inviter.company, //misma compañía que el que invita
+            status: "pending",
+            verificationCode, //guardamos el código en el usuario
+            attemptsLeft: 3 //intentos restantes
         })
 
         newUser.set("password", undefined, {strict: false})
 
         const token = await tokenSign(newUser)
+
+        const emailOptions = {
+            from: process.env.EMAIL,
+            to: email,
+            subject: 'Código de verificación',
+            html: `<h1>Verificación de cuenta</h1><p>Tu código es: <strong>${verificationCode}</strong></p>`
+        };
 
         res.json({
             message: "Usuario invitado creado correctamente",

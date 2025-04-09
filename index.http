@@ -16,8 +16,8 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "oscar4@gmail.com",
-    "password": "nuevacontraseña123"
+    "email": "oscarcorrochanolopez@gmail.com",
+    "password": "12345678"
 }
 
 ###Obtener la lista de usuarios
@@ -66,11 +66,11 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {   
-    "email": "prueba1@gmail.com",
+    "email": "oscarcorrochanolopez@gmail.com",
     "password": "12345678",
     "isAutonomous": true,
-    "name": "Prueba",
-    "lastname": "Primero",
+    "name": "Oscar",
+    "lastname": "Corrochano",
     "nif": "12345679X"
 }
 
@@ -131,10 +131,21 @@ Content-Type: application/json
 ### Invitar a un usuario guest
 POST http://localhost:3000/api/users/invite
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3ZWNjNzBmNWE0NmQyYjM5YmUxMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNDIxNzY0LCJleHAiOjE3NDM0Mjg5NjR9.HCWadjLW-YdbvpZ8xOkHA4fm8CY2EQcwqFzPSTK2FyY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjY3ODM4NzRiZTkxZjkxM2ZhOGFiNSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0MjA1OTQ1LCJleHAiOjE3NDQyMTMxNDV9.bXalMGKzsmldcfAKNCa06Azbuj2nW2ol_W_LAqX0fYg
 
 {
-    "email": "invitado@gmail.com"
+    "email": "oscarcorrochanolopez2@gmail.com"
+}
+
+### Test enviar correo
+POST http://localhost:3000/api/email/send
+Content-Type: application/json
+
+{
+  "subject": "Prueba de envío",
+  "text": "Este es un correo de prueba",
+  "to": "delvallewashcar@gmail.com",
+  "from": "oscarcorrochanolopez@gmail.com"
 }
 
 
