@@ -18,6 +18,8 @@ const authRouter = require('./routes/auth')
 app.use('/api/auth', authRouter);
 const mailRouter = require('./routes/email')
 app.use('/api/email', mailRouter)
+const clientRouter = require('./routes/client')
+app.use('/api/client', clientRouter)
 
 dbConnect() //conexión a la BD
 

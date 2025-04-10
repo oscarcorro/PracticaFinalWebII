@@ -134,7 +134,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjY3ODM4NzRiZTkxZjkxM2ZhOGFiNSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0MjA1OTQ1LCJleHAiOjE3NDQyMTMxNDV9.bXalMGKzsmldcfAKNCa06Azbuj2nW2ol_W_LAqX0fYg
 
 {
-    "email": "oscarcorrochanolopez2@gmail.com"
+    "email": "delvallewashcar@gmail.com"
 }
 
 ### Test enviar correo
