@@ -1,5 +1,5 @@
 const express = require('epxress')
-const {createClient, getClients, getClient, updateClient, deleteClient} = require('../controllers/client')
+const {createClient, getClients, getClient, updateClient, deleteClient, hardDeleteClient} = require('../controllers/client')
 const {authMiddleware} = require('..middleware/authMiddleware')
 
 const router = express.Router()
@@ -14,5 +14,7 @@ router.get('/:id', authMiddleware, getClient)
 router.put('/:id', authMiddleware, updateClient) //falta implementar validator
 //Eliminar un cliente
 router.delete('/:id', authMiddleware, deleteClient)
+//Borrado permanente de un cliente
+router.delete('/hard/:id', authMiddleware, hardDeleteClient);
 
 module.exports = router
