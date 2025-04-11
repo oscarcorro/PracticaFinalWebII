@@ -26,18 +26,18 @@ const ClientSchema = new mongoose.Schema(
             required: true
         },
         createdBy: { //asociado al usuario que creó el cliente
-            type: mongoose.Schema.types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true
         }
     },
     {
         timestamps: true, //createdAt y updatedAt
-        versionKey: true
+        versionKey: false
     }
 )
 
 ClientSchema.plugin(mongooseDelete, {overrideMethods: 'all', deletedAt: true})
 
-module.exports = mongoose.model('Client', clientSchema)
+module.exports = mongoose.model('Client', ClientSchema)
 

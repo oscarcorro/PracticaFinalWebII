@@ -1,7 +1,7 @@
-const express = require('epxress')
+const express = require('express')
 const {createClient, getClients, getClient, updateClient, deleteClient, hardDeleteClient, getArchivedClients, restoreClient} = require('../controllers/client')
-const {authMiddleware} = require('..middleware/authMiddleware')
-const {validatorCreateClient, validatorUpdateClient} = requiere("../validators/clientValidator")
+const {authMiddleware} = require('../middleware/authMiddleware')
+const {validatorCreateClient, validatorUpdateClient} = require("../validators/clientValidator")
 
 const router = express.Router()
 
