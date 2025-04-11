@@ -1,5 +1,5 @@
 const express = require('epxress')
-const {createClient, getClients, getClient, updateClient, deleteClient, hardDeleteClient} = require('../controllers/client')
+const {createClient, getClients, getClient, updateClient, deleteClient, hardDeleteClient, getArchivedClients, restoreClient} = require('../controllers/client')
 const {authMiddleware} = require('..middleware/authMiddleware')
 const {validatorCreateClient, validatorUpdateClient} = requiere("../validators/clientValidator")
 
@@ -16,6 +16,10 @@ router.put('/:id', authMiddleware, validatorUpdateClient, updateClient) //falta 
 //Eliminar un cliente
 router.delete('/:id', authMiddleware, deleteClient)
 //Borrado permanente de un cliente
-router.delete('/hard/:id', authMiddleware, hardDeleteClient);
+router.delete('/hard/:id', authMiddleware, hardDeleteClient)
+//Listado de clientes archivados
+router.get('/archived', authMiddleware, getArchivedClients)
+//Recuperar cliente archivado
+router.patch('/restore/:id', authMiddleware, restoreClient)
 
 module.exports = router

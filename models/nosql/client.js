@@ -24,6 +24,11 @@ const ClientSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true
+        },
+        createdBy: { //asociado al usuario que creó el cliente
+            type: mongoose.Schema.types.ObjectId,
+            ref: 'User',
+            required: true
         }
     },
     {
