@@ -9,6 +9,8 @@ const router = express.Router()
 router.post('/', authMiddleware, validatorCreateClient, createClient) //falta implementar el validator
 //Obtener todos los clientes
 router.get('/', authMiddleware, getClients)
+//Listado de clientes archivados
+router.get('/archived', authMiddleware, getArchivedClients)
 //Obtener un cliente por id
 router.get('/:id', authMiddleware, getClient)
 //Actualizar cliente
@@ -17,8 +19,6 @@ router.put('/:id', authMiddleware, validatorUpdateClient, updateClient) //falta 
 router.delete('/:id', authMiddleware, deleteClient)
 //Borrado permanente de un cliente
 router.delete('/hard/:id', authMiddleware, hardDeleteClient)
-//Listado de clientes archivados
-router.get('/archived', authMiddleware, getArchivedClients)
 //Recuperar cliente archivado
 router.patch('/restore/:id', authMiddleware, restoreClient)
 
