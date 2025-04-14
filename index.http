@@ -216,6 +216,39 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmN
   "description": "Descripción actualizada"
 }
 
+###Lista de todos los proyectos
+GET http://localhost:3000/api/project
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE5MDQ2LCJleHAiOjE3NDQ2MjYyNDZ9.G80vE4gssZ6tnnKYjHxZejuhEkW0DpgRCgrMxAP_YFg
+
+###Obtener un proyecto por ID
+GET http://localhost:3000/api/project/67fcc5b4005e54f389c877b7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+###Actualizar un proyecto
+PUT http://localhost:3000/api/project/67fcc5b4005e54f389c877b7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+{
+  "name": "Proyecto Actualizado",
+  "description": "Nueva descripción"
+}
+
+###Archivar (soft-delete) un proyecto
+DELETE http://localhost:3000/api/project/67fcc5b4005e54f389c877b7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+###Listar proyectos archivados
+GET http://localhost:3000/api/project/archived
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+###Recuperar un proyecto archivado
+PATCH http://localhost:3000/api/project/restore/67fcc5b4005e54f389c877b7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+###Eliminar proyecto permanentemente (hard delete)
+DELETE http://localhost:3000/api/project/hard/67fcc5b4005e54f389c877b7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
 
 
 

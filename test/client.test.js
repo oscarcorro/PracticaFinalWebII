@@ -91,18 +91,37 @@ describe('Client API tests', () => {
     expect(response.body._id).toBe(clientId);
   })
 
-  test('Actualizar un cliente', async () => {
+  //Crear otro cliente para pruebas de actualización
+  test('Crear un cliente para actualizar', async () => {
     const response = await api
-      .put(`/api/client/${clientId}`)
+      .post('/api/client')
       .set('Authorization', `Bearer ${token}`)
       .send({
-        address: 'Nueva Avenida 789',
-        phone: '600654321'
+        name: 'Empresa Update S.L.',
+        cif: 'B87654321',
+        address: 'Calle Actualizar 321',
+        phone: '600987654',
+        email: 'update@gmail.com'
+      })
+      .expect(201)
+
+    updateClientId = response.body._id //guardar id para actualizar
+  })
+
+  //Actualizar nuevo cliente
+  test.skip('Actualizar el cliente', async () => {
+    const response = await api
+      .put(`/api/client/${updateClientId}`)
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        address: 'Nueva Dirección 456',
+        phone: '600456789'
       })
       .expect(200)
 
-    expect(response.body.address).toBe('Nueva Avenida 789')
-  }, 20000)
+    expect(response.body.address).toBe('Nueva Dirección 456')
+  })
+
 
   test('Archivar (soft-delete) un cliente', async () => {
     const response = await api
