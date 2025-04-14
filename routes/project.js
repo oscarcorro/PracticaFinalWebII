@@ -10,14 +10,14 @@ router.post("/", authMiddleware, validatorCreateProject, createProject)
 router.put("/:id", authMiddleware, validatorUpdateProject, updateProject)
 //Obtener todos los proyectos del usuario/cliente
 router.get("/", authMiddleware, getProjects)
+//listar proyectos archivados
+router.get("/archived", authMiddleware, listArchivedProjects)
 //Obtener un proyecto por id
 router.get("/:id", authMiddleware, getProject)
 //Archivar un proyecto (soft-delete)
 router.delete("/:id", authMiddleware, archiveProject)
 //elminar un proyecto (hard-delete)
 router.delete("/hard/:id", authMiddleware, deleteProject)
-//listar proyectos archivados
-router.get("/archived", authMiddleware, listArchivedProjects)
 //recuperar un proyecto archivado
 router.patch("/restore/:id", authMiddleware, restoreProject)
 

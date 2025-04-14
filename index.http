@@ -39,7 +39,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGQ0OGM1Y
 }
 
 ###Eliminar usuario por ID
-DELETE http://localhost:3000/api/users/67dd564b6e2aea41b1e100d4
+DELETE http://localhost:3000/api/users/67f6790d653594d20c4f2946
 
 
 ###Validar el email con código
@@ -66,10 +66,10 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {   
-    "email": "oscarcorrochanolopez@gmail.com",
+    "email": "oscarcorrochanolopez2@gmail.com",
     "password": "12345678",
-    "isAutonomous": true,
-    "name": "Oscar",
+    "isAutonomous": false,
+    "name": "Oscar2",
     "lastname": "Corrochano",
     "nif": "12345679X"
 }
@@ -147,6 +147,76 @@ Content-Type: application/json
   "to": "delvallewashcar@gmail.com",
   "from": "oscarcorrochanolopez@gmail.com"
 }
+
+###Crear un cliente
+POST http://localhost:3000/api/client
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+{
+  "name": "CarWashdelValle",
+  "cif": "B12345678",
+  "address": "Calle Zurich 5",
+  "email": "info@carwashdelvalle.com",
+  "phone": "676961490"
+}
+
+###Listar todos los clientes del usuario
+GET http://localhost:3000/api/client
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+###Obtener un cliente concreto
+GET http://localhost:3000/api/client/67fcbac343513f9e032b3b42
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2Mjg2LCJleHAiOjE3NDQ2MjM0ODZ9.iUd6bT2nr36Tpnh838RrlR4ymz5wl4aJlb8Kv7-avwg
+
+###Actualizar datos de un cliente
+PUT http://localhost:3000/api/client/67fcbac343513f9e032b3b42
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+{
+  "address": "Calle Zurich 5 bis",
+  "phone": "630014420"
+}
+
+###Archivar (soft delete) un cliente
+DELETE http://localhost:3000/api/client/67fcbac343513f9e032b3b42
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+###Listar clientes archivados
+GET http://localhost:3000/api/client/archived
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2NTgzLCJleHAiOjE3NDQ2MjM3ODN9.kaJ1CGycwlgdadg3S2ktbMdEEzmD2J27A-qanekTqUE
+
+###Restaurar cliente archivado
+PATCH http://localhost:3000/api/client/restore/67fcbac343513f9e032b3b42
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2NjMyLCJleHAiOjE3NDQ2MjM4MzJ9.XKiIR4WfV2kE8tQwt5jPA5r1LiGyTKbGY8ZqQ2A05tc
+
+###Eliminar un cliente permanentemente (hard-delete)
+DELETE http://localhost:3000/api/client/hard/67fcbac343513f9e032b3b42
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2NjMyLCJleHAiOjE3NDQ2MjM4MzJ9.XKiIR4WfV2kE8tQwt5jPA5r1LiGyTKbGY8ZqQ2A05tc
+
+###Crear un proyecto
+POST http://localhost:3000/api/project
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE3MjQ0LCJleHAiOjE3NDQ2MjQ0NDR9.q2EbwSmEZYDfTKZkEb556kNICnprTevluhEuRN7cs7k
+
+{
+  "name": "Proyecto Increíble",
+  "description": "Este es un proyecto para CarWashdelValle",
+  "client": "67fcbac343513f9e032b3b42"
+}
+
+###Actualizar un proyecto
+PUT http://localhost:3000/api/project/67fcc5b4005e54f389c877b7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+
+
+{
+  "description": "Descripción actualizada"
+}
+
+
 
 
 

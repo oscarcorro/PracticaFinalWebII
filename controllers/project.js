@@ -44,15 +44,15 @@ const updateProject = async(req, res) => {
 //Obtener lista de proyectos 
 const getProjects = async(req, res) => {
     try{
-        const userId = req.params.id //usuario al que estan asociados los proyectos
+        const userId = req.user.id //usuario al que estan asociados los proyectos
         const userCompany = req.user.company?.cif //si tiene empresa, obtenemos el cif
 
-        const projects = await Project.find(
+        const projects = await Project.find({
             $or: [
                 { createdBy: userId },
                 { 'company.cif': userCompany }
             ]
-        )
+        })
         res.json(projects)
     }catch(error){
         console.error(error)
@@ -83,7 +83,7 @@ const archiveProject = async(req, res) =>{
         const project = await Project.findById(id)
 
         if(!project)
-            return handleHttpError(res, "PROJECT_NOT_FOUN", 404)
+            return handleHttpError(res, "PROJECT_NOT_FOUND", 404)
 
         await project.delete() //eliminado con soft-gelete
 
@@ -127,7 +127,7 @@ const listArchivedProjects = async(req, res) => {
         res.json(projects)
     }catch(error){
         console.error(error)
-        handleHttpError(res, "ERROR_LIST_ARCHIVED_PROJECTS")
+        handleHttpError(res, "ERROR_LIST_ARCHIVED_PROJECTS", 500)
     }
 }
 
@@ -145,7 +145,7 @@ const restoreProject = async(req, res) => {
         res.json({message: "Proyecto recuperado correctamente"})
     }catch(error){
         console.error(error)
-        handleHttpeError(res, "ERROR_RESTORE_PROJECT", 500)
+        handleHttpError(res, "ERROR_RESTORE_PROJECT", 500)
     }
 }
 
