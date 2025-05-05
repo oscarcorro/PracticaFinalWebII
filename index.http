@@ -1,255 +1,270 @@
-### Registro de nuevo usuario
+#Usuarios
+
+###Registro nuevo usuario
 POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-    "email": "oscar4@gmail.com",
-    "password": "123456789",
-    "name": "Oscar",
-    "lastname": "Corrochano",
-    "nif": "12345679X",
-    "isAutonomous": false
+  "email": "oscarcorrochanolopez@gmail.com",
+  "password": "pruebaFinal123",
+  "name": "Prueba",
+  "lastname": "Final",
+  "nif": "12345678X",
+  "isAutonomous": false
 }
 
-###Iniciar sesión con usuario registrado
+###Validación de correo electrónico
+POST http://localhost:3000/api/auth/validate
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTQ3MjI4ZWNjZmExZWZiNWRjOWJkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTcwNDM1LCJleHAiOjE3NDYxNzc2MzV9.qnA_ji8Tq1L7R8PAKO_vjVUsA544xvxQ4_8fJh6JZXg
+
+{
+  "code": "425225"
+}
+
+###Login de usuario
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "oscarcorrochanolopez@gmail.com",
-    "password": "12345678"
+  "email": "oscarcorrochanolopez@gmail.com",
+  "password": "pruebaFinal123"
 }
 
-###Obtener la lista de usuarios
-GET http://localhost:3000/api/users
-
-###Obtener usuario por ID
-GET http://localhost:3000/api/users/67dd4b23f4d1147409c73893
-
-###Actualizar datos de un usuario
-PUT http://localhost:3000/api/users/67dd564b6e2aea41b1e100d4
+###Actualizar datos personales
+PUT http://localhost:3000/api/users/68139c13d9ba9452565df9bb
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGQ0OGM1YWMzNWU2MmQwMTViZWQ0ZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQyNTU1NDAxLCJleHAiOjE3NDI1NjI2MDF9.UW6MTLaYlG6UE0Z8JWrAM2XMsECv3WspO0xpfGdyoMw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTM5YzEzZDliYTk0NTI1NjVkZjliYiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE2MDcyLCJleHAiOjE3NDYxMjMyNzJ9.H-vFmrGM2Jxs4v67Upc5G-LbV7VqQHLzf28h3qeyNLk
 
 {
-    "name": "Oscar",
-    "lastname": "Corrochano",
-    "nif": "12345678X",
-    "isAutonomous": false
+  "name": "Prueba Actualizado",
+  "lastname": "Final Actualizado",
+  "nif": "87654321Z"
 }
 
-###Eliminar usuario por ID
-DELETE http://localhost:3000/api/users/67f6790d653594d20c4f2946
+###Obtener usuario por token
+GET http://localhost:3000/api/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTM5YzEzZDliYTk0NTI1NjVkZjliYiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE2MTg0LCJleHAiOjE3NDYxMjMzODR9.9ayr1OYZBcL4WDkIuu1ojxORKUnKyQvSLKZiFQ7mzbI
 
-
-###Validar el email con código
-POST http://localhost:3000/api/auth/validate
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTY0NmRmMjNlOWM5N2QxOTg0ZmI5NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzMTQ0NzExLCJleHAiOjE3NDMxNTE5MTF9.BwNt_wkAHPxdPSktTq6raLwVceBOCN86ODNaE1koQyI
-
-{
-    "code": "910777"
-}
-###Enviar email
-POST http://localhost:3000/api/email/send
-Content-Type: application/json
-
-{
-    "subject": "Prueba de correo",
-    "text": "Este correo solo llegará a gente con calvicie severa.",
-    "to": "oscarcorrochanolopez@gmail.com",
-    "from": "oscarcorrochanolopez@gmail.com"
-}
-
-###Registrar un usuario autónomo
-POST http://localhost:3000/api/auth/register
-Content-Type: application/json
-
-{   
-    "email": "oscarcorrochanolopez2@gmail.com",
-    "password": "12345678",
-    "isAutonomous": false,
-    "name": "Oscar2",
-    "lastname": "Corrochano",
-    "nif": "12345679X"
-}
-
-###Actualización datos compañia
+###Actualizar datos de compañía
 PATCH http://localhost:3000/api/users/update-company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGQ1NjRiNmUyYWVhNDFiMWUxMDBkNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQyNTU4Nzk1LCJleHAiOjE3NDI1NjU5OTV9.B3LR-VBT2O3XF71DLNuB_rI_fOF4fGkIdjjagB7FkAo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTM5YzEzZDliYTk0NTI1NjVkZjliYiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE2MTg0LCJleHAiOjE3NDYxMjMzODR9.9ayr1OYZBcL4WDkIuu1ojxORKUnKyQvSLKZiFQ7mzbI
 
 {
-    "name": "Empresa Demo",
-    "cif": "B12345678",
-    "address": "Calle Falsa 123"
+  "name": "Empresa Prueba Final",
+  "cif": "B12345678",
+  "address": "Dirección de la Prueba, Ciudad, 28232"
 }
 
-### Punto 4, logo 
-### Actualizar logo
-PATCH http://localhost:3000/api/users/update-logo
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTY0NmRmMjNlOWM5N2QxOTg0ZmI5NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzMTQ1MDkzLCJleHAiOjE3NDMxNTIyOTN9.RP3Q464xl7J_9KmmflF0en_uSDrkylZPcDXb-Iu096Q
-Content-Type: multipart/form-data; boundary=boundary123
-
---boundary123
-Content-Disposition: form-data; name="logo"; filename="logo1.png"
-Content-Type: image/png
-
-< ./logo1.png
---boundary123--
-
-
-###Obtener usuario a partir del token
-GET http://localhost:3000/api/users/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3YTA1YTUxMGJlYTBhZmI5OWZlZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNDIwMjcxLCJleHAiOjE3NDM0Mjc0NzF9.RtdxXcrw-2kjKhpGUYBRhZBPS61zEfq1FnhPy5D2IJ0
-
-### Eliminar usuario (soft delete por defecto)
-DELETE http://localhost:3000/api/users/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3YTA1YTUxMGJlYTBhZmI5OWZlZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNDIwMjcxLCJleHAiOjE3NDM0Mjc0NzF9.RtdxXcrw-2kjKhpGUYBRhZBPS61zEfq1FnhPy5D2IJ0
-
-### Eliminar usuario (hard delete)
-DELETE http://localhost:3000/api/users/profile?soft=false
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3ZDZhODg3OTE4NTNhYzNjOTY0ZCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNDIwNzc4LCJleHAiOjE3NDM0Mjc5Nzh9.8Ep4C0C6aIQn2Ql9EHLD3obHeCiaqOpFzDvHCy05t1w
-
-###Recuperar contraseña
+#Cambio de contraseña
+###Solicitar codigo para recuperar contraseña
 POST http://localhost:3000/api/auth/recover-password
 Content-Type: application/json
 
 {
-    "email": "oscar4@gmail.com"
+  "email": "oscarcorrochanolopez@gmail.com"
 }
 
-### Resetear contraseña
+###Cambiar contraseña
 POST http://localhost:3000/api/auth/reset-password
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWE3ZWNjNzBmNWE0NmQyYjM5YmUxMSIsImlhdCI6MTc0MzQyMTE0NCwiZXhwIjoxNzQzNDIxNzQ0fQ.dqcz9XUyLwsFedV-M3wmL1g8v6CJzsxy3tiEH6j16Q8",
-    "newPassword": "nuevacontraseña123"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTM5YzEzZDliYTk0NTI1NjVkZjliYiIsImlhdCI6MTc0NjExNjY3MCwiZXhwIjoxNzQ2MTE3MjcwfQ.-azJIZ-Eq3XFrEmIdLLCMRH-FnELr2XHiDdfsnMo0Ig",
+  "newPassword": "NuevaPruebaFinal123"
 }
 
-### Invitar a un usuario guest
+###Invitar a un usuario
 POST http://localhost:3000/api/users/invite
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjY3ODM4NzRiZTkxZjkxM2ZhOGFiNSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0MjA1OTQ1LCJleHAiOjE3NDQyMTMxNDV9.bXalMGKzsmldcfAKNCa06Azbuj2nW2ol_W_LAqX0fYg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTM5YzEzZDliYTk0NTI1NjVkZjliYiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE3MTgyLCJleHAiOjE3NDYxMjQzODJ9.mXdeYDN-6s07OpP_h7W7zJNEbfwPyjFblnezQ6SNDx0
 
 {
-    "email": "delvallewashcar@gmail.com"
+  "email": "usuarioInvitado@gmail.com"
 }
 
-### Test enviar correo
-POST http://localhost:3000/api/email/send
-Content-Type: application/json
+###Eliminar usuario (soft-delete)
+DELETE http://localhost:3000/api/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTM5YzEzZDliYTk0NTI1NjVkZjliYiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE3MzE3LCJleHAiOjE3NDYxMjQ1MTd9.TgBTomuINjblqH-1tXj0La3cuaIdHC_L51isLVNUZFc
 
-{
-  "subject": "Prueba de envío",
-  "text": "Este es un correo de prueba",
-  "to": "delvallewashcar@gmail.com",
-  "from": "oscarcorrochanolopez@gmail.com"
-}
+###Eliminar usuario permanentemente (hard-delete)
+DELETE http://localhost:3000/api/users/profile?soft=false
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTQ5NTI5M2M4NDA5Y2M5YTQ2NTMzMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTc5NDAyLCJleHAiOjE3NDYxODY2MDJ9.Vgn25bLaYU4BaunGJesrDzHOW9bdzkBM4nniGsNKTAI
 
-###Crear un cliente
+
+#Clientes
+
+###Crear cliente
 POST http://localhost:3000/api/client
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTQ5NTY1MWI1MjZkYmQwNTU2NDc5NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTk2NDMxLCJleHAiOjE3NDYyMDM2MzF9.V-Gj6lviQc4GSS5jb_X6wr6HEiKtY-yjteYXdVaX4RY
 
 {
-  "name": "CarWashdelValle",
-  "cif": "B12345678",
-  "address": "Calle Zurich 5",
-  "email": "info@carwashdelvalle.com",
-  "phone": "676961490"
+  "name": "Cliente Prueba Final Final",
+  "cif": "D12345673",
+  "address": "Calle Prueba 236, Madrid",
+  "email": "clientepruebafinalfinal@gmail.com",
+  "phone": "123456781"
 }
 
-###Listar todos los clientes del usuario
-GET http://localhost:3000/api/client
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
-
-###Obtener un cliente concreto
-GET http://localhost:3000/api/client/67fcbac343513f9e032b3b42
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2Mjg2LCJleHAiOjE3NDQ2MjM0ODZ9.iUd6bT2nr36Tpnh838RrlR4ymz5wl4aJlb8Kv7-avwg
-
-###Actualizar datos de un cliente
-PUT http://localhost:3000/api/client/67fcbac343513f9e032b3b42
+###Actualizar cliente
+PUT http://localhost:3000/api/client/6813ac05d9ba9452565df9e6
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE5NjQ4LCJleHAiOjE3NDYxMjY4NDh9.Sqb568tII16YKSTX2Avce9H5AbPO5Gk79MAS96TrUSo
 
 {
-  "address": "Calle Zurich 5 bis",
-  "phone": "630014420"
+  "name": "Cliente Final Actualizado",
+  "address": "Prueba Final Actializado, Madrid",
+  "phone": "987654321"
 }
 
-###Archivar (soft delete) un cliente
-DELETE http://localhost:3000/api/client/67fcbac343513f9e032b3b42
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+###Listar clientes
+GET http://localhost:3000/api/client
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTQ3MjI4ZWNjZmExZWZiNWRjOWJkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTcwNDM1LCJleHAiOjE3NDYxNzc2MzV9.qnA_ji8Tq1L7R8PAKO_vjVUsA544xvxQ4_8fJh6JZXg
+
+###Obtener cliente por ID
+GET http://localhost:3000/api/client/6813ac05d9ba9452565df9e6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE5NjQ4LCJleHAiOjE3NDYxMjY4NDh9.Sqb568tII16YKSTX2Avce9H5AbPO5Gk79MAS96TrUSo
+
+###Archivar cliente (soft-delete)
+DELETE http://localhost:3000/api/client/6813ac05d9ba9452565df9e6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE5NjQ4LCJleHAiOjE3NDYxMjY4NDh9.Sqb568tII16YKSTX2Avce9H5AbPO5Gk79MAS96TrUSo
+
+###Eliminar cliente permanentemente (hard-delete)
+DELETE http://localhost:3000/api/client/hard/6813ac05d9ba9452565df9e6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE5NjQ4LCJleHAiOjE3NDYxMjY4NDh9.Sqb568tII16YKSTX2Avce9H5AbPO5Gk79MAS96TrUSo
 
 ###Listar clientes archivados
 GET http://localhost:3000/api/client/archived
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2NTgzLCJleHAiOjE3NDQ2MjM3ODN9.kaJ1CGycwlgdadg3S2ktbMdEEzmD2J27A-qanekTqUE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE5NjQ4LCJleHAiOjE3NDYxMjY4NDh9.Sqb568tII16YKSTX2Avce9H5AbPO5Gk79MAS96TrUSo
 
 ###Restaurar cliente archivado
-PATCH http://localhost:3000/api/client/restore/67fcbac343513f9e032b3b42
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2NjMyLCJleHAiOjE3NDQ2MjM4MzJ9.XKiIR4WfV2kE8tQwt5jPA5r1LiGyTKbGY8ZqQ2A05tc
+PATCH http://localhost:3000/api/client/restore/6813ac05d9ba9452565df9e6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTE5NjQ4LCJleHAiOjE3NDYxMjY4NDh9.Sqb568tII16YKSTX2Avce9H5AbPO5Gk79MAS96TrUSo
 
-###Eliminar un cliente permanentemente (hard-delete)
-DELETE http://localhost:3000/api/client/hard/67fcbac343513f9e032b3b42
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2NjMyLCJleHAiOjE3NDQ2MjM4MzJ9.XKiIR4WfV2kE8tQwt5jPA5r1LiGyTKbGY8ZqQ2A05tc
+#Proyectos
 
-###Crear un proyecto
+###Crear proyecto
 POST http://localhost:3000/api/project
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE3MjQ0LCJleHAiOjE3NDQ2MjQ0NDR9.q2EbwSmEZYDfTKZkEb556kNICnprTevluhEuRN7cs7k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTQ5NTY1MWI1MjZkYmQwNTU2NDc5NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTk2NDMxLCJleHAiOjE3NDYyMDM2MzF9.V-Gj6lviQc4GSS5jb_X6wr6HEiKtY-yjteYXdVaX4RY
 
 {
-  "name": "Proyecto Increíble",
-  "description": "Este es un proyecto para CarWashdelValle",
-  "client": "67fcbac343513f9e032b3b42"
+  "name": "Proyecto Prueba Final Final",
+  "description": "Descripción del proyecto de prueba final final",
+  "client": "6814d80301d43967c9706c53"
 }
 
-###Actualizar un proyecto
-PUT http://localhost:3000/api/project/67fcc5b4005e54f389c877b7
+###Actualizar proyecto
+PUT http://localhost:3000/api/project/681470f0eccfa1efb5dc9bd2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
 
 {
-  "description": "Descripción actualizada"
+  "name": "Proyecto prueba Final Actualizado",
+  "description": "Nueva descripción del proyecto prueba Final",
+  "client": "681470e5eccfa1efb5dc9bcf"
 }
 
-###Lista de todos los proyectos
+###Listar todos los proyectos
 GET http://localhost:3000/api/project
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYWYwNDM1MTNmOWUwMzJiM2I0NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE5MDQ2LCJleHAiOjE3NDQ2MjYyNDZ9.G80vE4gssZ6tnnKYjHxZejuhEkW0DpgRCgrMxAP_YFg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
 
-###Obtener un proyecto por ID
-GET http://localhost:3000/api/project/67fcc5b4005e54f389c877b7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+###Obtener proyecto por ID
+GET http://localhost:3000/api/project/6814728eeccfa1efb5dc9be7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
 
-###Actualizar un proyecto
-PUT http://localhost:3000/api/project/67fcc5b4005e54f389c877b7
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
-
-{
-  "name": "Proyecto Actualizado",
-  "description": "Nueva descripción"
-}
-
-###Archivar (soft-delete) un proyecto
-DELETE http://localhost:3000/api/project/67fcc5b4005e54f389c877b7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+###Archivar proyecto (soft-delete)
+DELETE http://localhost:3000/api/project/681470f0eccfa1efb5dc9bd2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
 
 ###Listar proyectos archivados
 GET http://localhost:3000/api/project/archived
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
-
-###Recuperar un proyecto archivado
-PATCH http://localhost:3000/api/project/restore/67fcc5b4005e54f389c877b7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
 
 ###Eliminar proyecto permanentemente (hard delete)
-DELETE http://localhost:3000/api/project/hard/67fcc5b4005e54f389c877b7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNiYTVmNDM1MTNmOWUwMzJiM2IzZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ0NjE2MDQ1LCJleHAiOjE3NDQ2MjMyNDV9.fjzvvusZjVb32x54emRlmXxJeXA3hacF7CC7G4B-4Jg
+DELETE http://localhost:3000/api/project/hard/6814728eeccfa1efb5dc9be7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
 
+###Recuperar proyecto archivado
+PATCH http://localhost:3000/api/project/restore/681470f0eccfa1efb5dc9bd2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
 
+#Albaranes
+
+###Crear albarán con una sola entrada
+POST http://localhost:3000/api/deliverynote
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTQ5NTY1MWI1MjZkYmQwNTU2NDc5NiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTk2NDMxLCJleHAiOjE3NDYyMDM2MzF9.V-Gj6lviQc4GSS5jb_X6wr6HEiKtY-yjteYXdVaX4RY
+
+{
+  "type": "hours",
+  "client": "6814d80301d43967c9706c53",
+  "project": "6814d82501d43967c9706c56",
+  "entries": [
+    {
+      "description": "Albarán para prueba final final",
+      "quantity": 8,
+      "unit": "horas"
+    }
+  ]
+}
+
+###Crear albarán con varias entradas
+POST http://localhost:3000/api/deliverynote
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
+
+{
+  "type": "materials",
+  "client": "68147273eccfa1efb5dc9be4",
+  "project": "68147a60eccfa1efb5dc9c07",
+  "entries": [
+    {
+      "description": "Material A",
+      "quantity": 10,
+      "unit": "unidades"
+    },
+    {
+      "description": "Material B",
+      "quantity": 5,
+      "unit": "metros"
+    },
+    {
+      "description": "Albarán para prueba final con varias entradas",
+      "quantity": 8,
+      "unit": "horas"
+    }
+  ]
+}
+
+###Listar todos los albaranes
+GET http://localhost:3000/api/deliverynote
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
+
+###Obtener albarán por ID
+GET http://localhost:3000/api/deliverynote/68147a86eccfa1efb5dc9c0a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
+
+###Descargar albarán en PDF
+GET http://localhost:3000/api/deliverynote/pdf/68147acdeccfa1efb5dc9c0c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
+
+###Firmar albarán
+PATCH http://localhost:3000/api/deliverynote/sign/68147acdeccfa1efb5dc9c0c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="firma.png"
+Content-Type: image/png
+
+< ./firma.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###Eliminar albarán
+DELETE http://localhost:3000/api/deliverynote/68147a86eccfa1efb5dc9c0a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTNhM2Q3ZDliYTk0NTI1NjVkZjlkZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2MTY5OTcwLCJleHAiOjE3NDYxNzcxNzB9.KUJJOnm9_YzTyGVHdTcqOaL6AKOYAAkcv256c90P0Wc
 
 

@@ -2,7 +2,7 @@ const express = require("express") //framework servidores
 const { getUsers, getUser, updateUser, deleteUser, updateUserCompanyData, getProfile, deleteProfile, inviteUser } = require("../controllers/users") //funciones 
 const { validatorPersonalData, validatorCompanyData } = require("../validators/userValidator")
 const {authMiddleware} = require("../middleware/authMiddleware")
-const {uploadMiddleware} = require("../middleware/uploadLogo")
+const {uploadMiddleware} = require("../middleware/uploadMiddleware")
 const User = require("../models/nosql/user")
 
 

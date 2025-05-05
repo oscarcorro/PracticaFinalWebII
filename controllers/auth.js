@@ -5,6 +5,7 @@ const {tokenSign} = require("../utils/handleJwt") //función para firmar y gener
 const User = require("../models/nosql/user") //modelo del usuario en mongoDB
 const {handleHttpError} = require("../utils/handleError") //manejo de errores
 const jwt = require("jsonwebtoken")
+const {sendEmail} = require("../utils/handleEmail") //enviar emails
 
 //Controlador para registrar un nuevo usuario
 const registerCtrl = async(req, res) => {
@@ -29,6 +30,21 @@ const registerCtrl = async(req, res) => {
             status: "pending",
             company: companyData
         })
+
+        //enviar codigo de verificación
+        const emailOptions = {
+            from: process.env.EMAIL,
+            to: newUser.email,
+            subject: "Código de verificación",
+            html: `<h1>Verificación de cuenta</h1><p>Tu código es: <strong>${verificationCode}</strong></p>`
+        };
+        
+        try {
+            await sendEmail(emailOptions);
+        } catch (error) {
+            console.error("Error al enviar el correo:", error);
+            // Aunque falle el envío del correo, continuamos con el registro
+        }
 
         newUser.set("password", undefined, {strict: false}) //no mostrar la contraseña
         //respuesta con el token y el usuario nuevo
@@ -113,7 +129,22 @@ const recoverPassword = async(req, res) => {
             {expiresIn: "10m"}
         )
 
-        res.json({ message: "Token para recuperar contraseña generado", token })
+        //enviar correo con el token
+        const emailOptions = {
+            from: process.env.EMAIL,
+            to: user.email,
+            subject: "Recuperación de contraseña",
+            html: `<h1>Recuperación de contraseña</h1><p>Tu token para recuperar la contraseña es: <strong>${token}</strong></p><p>Este token expirará en 10 minutos.</p>`
+        }
+
+        try {
+            await sendEmail(emailOptions)
+            res.json({message: "Se ha enviado un correo con instrucciones para recuperar tu contraseña"})
+        }catch(error){
+            console.error("Error al enviar el correo:", error)
+            //si falla el envío del correo
+            res.json({message: "Token para recuperar contraseña generado", token})
+        }
     } catch(error){
         console.error(error)
         handleHttpError(res, "ERROR_RECOVER_PASSWORD", 500)

@@ -56,7 +56,7 @@ const updateClient = async (req, res) => {
         if(!updatedClient)
             return handleHttpError(res, "CLIENT_NOT_FOUND", 404)
 
-        res.json
+        res.json(updatedClient)
     } catch(error){
         console.error(error)
         handleHttpError(res, "ERROR_UPDATE_CLIENT", 500)
@@ -107,7 +107,7 @@ const getArchivedClients = async(req, res) => {
 //recuperar cliente archivado
 const restoreClient = async(req, res) => {
     try {
-        const {id} = req.params.id
+        const {id} = req.params
         const restoredClient = await Client.restore({_id: id})
 
         if(!restoredClient)
