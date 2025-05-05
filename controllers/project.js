@@ -1,12 +1,19 @@
 const {handleHttpError} = require("../utils/handleError") //manejar errores
 const Project = require("../models/nosql/project")
 const {matchedData} = require("express-validator") //comprobar info
+const Client = require("../models/nosql/client")
+
 
 //Crear un nuevo proyecto
 const createProject = async(req, res) => {
     try{
         const userId = req.user.id //id del usuario que ha iniciado seisón
         const {name, client} = matchedData(req)
+        //verificamos si el cliente existe para no poder crear un proyecto sin indicar cliente
+        const clientExists = await Client.findById(client)
+        if(!clientExists)
+            return handleHttpError(res, "CLIENT_NOT_FOUND", 404)
+    
         //comprobar si ya existe un proyecto con este nombre asociado al mismo cliente y usuario
         const existingProject = await Project.findOne({name, client, createdBy: userId})
         if(existingProject)
@@ -45,14 +52,8 @@ const updateProject = async(req, res) => {
 const getProjects = async(req, res) => {
     try{
         const userId = req.user.id //usuario al que estan asociados los proyectos
-        const userCompany = req.user.company?.cif //si tiene empresa, obtenemos el cif
+        const projects = await Project.find({createdBy: userId})
 
-        const projects = await Project.find({
-            $or: [
-                { createdBy: userId },
-                { 'company.cif': userCompany }
-            ]
-        })
         res.json(projects)
     }catch(error){
         console.error(error)
@@ -117,12 +118,7 @@ const listArchivedProjects = async(req, res) => {
         const userCompany = req.user.company?.cif
 
         //buscar los proyectos archivados
-        const projects = await Project.findDeleted({
-            $or: [
-            { createdBy: userId },
-            { 'company.cif': userCompany }
-            ]
-        })
+        const projects = await Project.findDeleted({createdBy: userId})
 
         res.json(projects)
     }catch(error){
@@ -135,7 +131,8 @@ const listArchivedProjects = async(req, res) => {
 const restoreProject = async(req, res) => {
     try{
         const {id} = req.params //id del proyecto a recuperar
-        const project = await Project.findOneDeleted({_id: id}) //proyecto que queremos recuperar
+        const userId = req.user.id
+        const project = await Project.findOneDeleted({_id: id, createdBy: userId}) //proyecto que queremos recuperar
 
         if(!project)
             return handleHttpError(res, "PROJECT_NOT_FOUND", 404)
