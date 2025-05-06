@@ -2,7 +2,7 @@ const express = require("express")
 const {authMiddleware} = require("../middleware/authMiddleware")
 const {createDeliveryNote, getDeliveryNotes, getDeliveryNote, signDeliveryNote, deleteDeliveryNote, downloadDeliveryNotePDF} = require("../controllers/deliveryNote")
 const {validatorCreateDeliveryNote} = require("../validators/deliveryNoteValidator")
-const {uploadMiddleware, uploadMiddlewareMemory} = require("../middleware/uploadMiddleware")
+const {uploadMiddlewareMemory} = require("../middleware/uploadMiddleware")
 
 const router = express.Router()
 

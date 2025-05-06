@@ -2,18 +2,31 @@ const {matchedData} = require("express-validator")
 const {handleHttpError} = require("../utils/handleError")
 const DeliveryNote = require("../models/nosql/deliveryNote")
 const Client = require("../models/nosql/client")
-const User = require("../models/nosql/user")
 const {generatePDF}  = require("../utils/generatePDF")
 const path = require("path")
 const { uploadToPinata } = require("../utils/handleUploadIPFS")
 const fs = require("fs")
-
+const Project = require("../models/nosql/project")
 
 //crear un albarán
 const createDeliveryNote = async(req, res) => {
     try{
         const userId = req.user.id
         const body = matchedData(req)
+
+        //si no tenemos cliente o proyecto en el body
+        if(!body.client || !body.project)
+            return handleHttpError(res, "INCOMPLETE_DATA", 404)
+        
+        //verificamos que el cliente existe
+        const clientExists = await Client.findById(body.client)
+        if(!clientExists)
+            return handleHttpError(res, "CLIENT_NOT_FOUND", 404)
+        
+         //verificamos que el proyecto existe
+         const projectExists = await Project.findById(body.project)
+        if(!projectExists)
+            return handleHttpError(res, "PROJECT_NOT_FOUND", 404)
 
         const newDeliveryNote = await DeliveryNote.create({
             ...body,

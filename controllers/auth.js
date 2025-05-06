@@ -39,11 +39,10 @@ const registerCtrl = async(req, res) => {
             html: `<h1>Verificación de cuenta</h1><p>Tu código es: <strong>${verificationCode}</strong></p>`
         };
         
-        try {
+        try{
             await sendEmail(emailOptions);
-        } catch (error) {
+        }catch (error) {
             console.error("Error al enviar el correo:", error);
-            // Aunque falle el envío del correo, continuamos con el registro
         }
 
         newUser.set("password", undefined, {strict: false}) //no mostrar la contraseña
